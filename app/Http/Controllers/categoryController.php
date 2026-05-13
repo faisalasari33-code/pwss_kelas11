@@ -13,9 +13,9 @@ class CategoryController extends Controller
     //
   public function index(){
     if(isset($_GET['search'])){
-        $data['categories']=Categories::where('name','like','%'.$_GET['search'].'%')->get();
+        $data['categories']=Category::where('name','like','%'.$_GET['search'],'%')->get();
     }else{
-        $data['categories']=Categories::all();
+        $data['categories']=Category::all();
     }
 
     return view('admin.category.index',$data);
@@ -29,7 +29,7 @@ class CategoryController extends Controller
     $request->validate([
         'name' => 'required|unique:categories,name'
     ]);
-    Categories::create([
+    Category::create([
         'name' => $request->name
     ]);
 
@@ -37,7 +37,7 @@ class CategoryController extends Controller
    }
 
     public function destroy($id){
-    $category = Categories::findOrFail($id);
+    $category = Category::findOrFail($id);
     $category->delete();
 
     return redirect()->route('admin.category.index')->with('success', 'category deleted succesfully');
@@ -50,7 +50,7 @@ class CategoryController extends Controller
     }catch(DecryptException $e){
         abort(404);
     }
-    $data ['category'] = Categories::findOrFail($id);
+    $data ['category'] = Category::findOrFail($id);
     return view('admin.category.edit', $data);
    }
 
@@ -68,7 +68,7 @@ class CategoryController extends Controller
     // $category->name = $request->name;
     // $category->save();
 
-    $category = Categories::where('id', $id)->update([
+    $category = Category::findOrFail($id)->update([
         'name' => $request->name
     ]);
 

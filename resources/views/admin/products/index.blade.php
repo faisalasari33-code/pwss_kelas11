@@ -28,7 +28,7 @@
                     {{ session('success') }}
                 </div>
             @endsession
-            <table class="table table-striped">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -50,7 +50,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->price }}</td>
                             <td>{{ $item->stok }}</td>
-                            <td>{{ $item->category->name }}</td>
+                            <td>{{ $item->category->name ?? '' }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $item->image) }}" width="50">
                             </td>

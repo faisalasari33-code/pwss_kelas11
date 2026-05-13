@@ -52,8 +52,8 @@
                 <input type="file" name="image" id="image" class="form-control">
             </div>
             <div class="mb-3">
-                <label>Deskripsi</label>
-                <input type="text" name="deskripsi" class="form-control" placeholder="Masukkan Deskripsi">
+                <label>Description</label>
+                <textarea name="description" id="description" class="form-control"></textarea>
             </div>
             <input type="submit" value="Simpan Data" class="btn btn-primary">
         </form>

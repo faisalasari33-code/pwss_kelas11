@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dart">
+    <nav class="navbar navbar-expand-sm bg-info navbar-dart">
         <div class="container ">
             <a class="navbar-brand text-light" href="#">TOKOKU</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -24,6 +24,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/products">Products</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-while" href="/admin/logout">Logout</a>
                     </li>
                 </ul>
             </div>

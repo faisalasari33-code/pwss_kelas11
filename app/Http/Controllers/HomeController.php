@@ -3,30 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categories;
+use App\Models\Products;
+use App\Models\Category;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+
+
 
 class HomeController extends Controller
 {
-    //
-    public function index()
-    {
-        $data['nama'] = 'Faisal asari';
-        $data['role'] = 'Maksman';
-        $data['products'] = [
-            'hanabi',
-            'Layla',
-            'zilong',
-            'Aluchard',
-        ];
-        return view('home', $data);
+public function index() {
+    $categories =  Category::with('products')->get();
+    $product =  Products::orderBy('created_at', 'desc')->take(3)->get();
+    return view('home', compact('product','categories'));
+}
+
+public function detail($id)
+{
+   try{
+      $id = Crypt::decrypt($id);
+    }catch(DecryptException $e){
+        abort(404);
     }
-
-    // public function about()
-    // {
-    //     return view('about');
-    // }
-
-    // public function contact()
-    // {
-    //     return view('contact');
-    // }
+    $product = Products::FindORFail($id);
+    return view('detail', compact('product'));
+}
 }
